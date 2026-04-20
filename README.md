@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Manhal's Sweets & Cafe — marketing site
 
-## Getting Started
+A small, image-led Next.js 16 marketing site for **Manhal's Sweets & Cafe**, opening 26 April 2026.
 
-First, run the development server:
+## Run it
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's in here
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/page.tsx` — Home (opening-day hero, three pillars, story, featured cakes, visit CTA)
+- `app/cakes/page.tsx` — Cakes highlight (nine signature cakes + custom order CTA)
+- `app/menu/page.tsx` — Menu preview (full menu drops 26 April)
+- `app/contact/page.tsx` — Contact & pastry orders (form, hours, address, lead times)
+- `app/components/` — Shared `SiteHeader`, `SiteFooter`, `Wordmark`, `Photo`, `Ornament`
+- `app/fonts/HourglassOfShine.otf` — brand display font (used by the `font-display` class)
+- `public/brand/logo.svg` — full logo (from the supplied brand pack)
+- `public/Final files/` — the original supplied brand files (untouched)
 
-## Learn More
+## Design system
 
-To learn more about Next.js, take a look at the following resources:
+Brand tokens are defined in `app/globals.css` and exposed as Tailwind 4 theme vars:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Token | Hex | Use |
+|---|---|---|
+| `bg-cream` | `#f6efe3` | page background |
+| `bg-cream-soft` / `bg-cream-deep` | `#efe5d3` / `#e7d8bf` | alternating section washes |
+| `text-ink` | `#1c120d` | body text |
+| `text-ink-soft` / `text-ink-muted` | `#3b2a21` / `#6b5346` | secondary text |
+| `text-burgundy` / `bg-burgundy` | `#561b0d` | brand dark — from the logo |
+| `text-gold` / `text-gold-light` | `#c89b54` / `#e6b865` | brand accent — from the logo |
+| `border-line` / `border-line-soft` | `#d9c9b1` / `#e6d9c1` | warm hairlines |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Typography: **Fraunces** (soft editorial serif) for display, **Inter** for UI, **Hourglass of Shine** as a feature display font.
 
-## Deploy on Vercel
+## Placeholders to swap
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Photography — every `<Photo/>` block is a warm gradient stand-in. Replace by dropping real images into `/public` and rendering a `next/image` inside the `<Photo>` (or replacing the component body).
+- Menu items — `app/menu/page.tsx` has a skeleton of sections; swap in the real menu on 26 April.
+- Address, phone, email — placeholder in `SiteFooter`, `ContactPage`, and metadata in `app/layout.tsx`.
+- `metadataBase` in `app/layout.tsx` — update to the live domain.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes on Next.js 16
+
+- Turbopack is default — no flag needed.
+- `params` / `searchParams` are async — not used here since all pages are static.
+- Uses React 19.2 under the hood.

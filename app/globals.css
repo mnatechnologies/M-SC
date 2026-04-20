@@ -1,26 +1,342 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------------------------
+   Manhal's Sweets & Cafe — Brand Design System
+   ------------------------------------------------------------------------- */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette — derived from the logo SVG */
+  --ink: #1c120d;          /* warm near-black for body text */
+  --ink-soft: #3b2a21;     /* softer body text */
+  --ink-muted: #6b5346;    /* muted / captions */
+
+  --cream: #f6efe3;        /* page background — warm off-white */
+  --cream-soft: #efe5d3;   /* section alt background */
+  --cream-deep: #e7d8bf;   /* hero wash */
+
+  --burgundy: #561b0d;     /* brand dark accent — from logo */
+  --burgundy-deep: #3d120a;
+
+  --gold: #c89b54;         /* brand gold — from logo */
+  --gold-light: #e6b865;
+  --gold-soft: #d9b57a;
+
+  --line: #d9c9b1;         /* warm hairline */
+  --line-soft: #e6d9c1;
+
+  /* Semantic tokens */
+  --background: var(--cream);
+  --foreground: var(--ink);
+
+  /* Spacing scale echoes the brand's generous rhythm */
+  --space-section-y: clamp(4rem, 8vw, 8rem);
+
+  /* Radii */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+
+  --color-cream: var(--cream);
+  --color-cream-soft: var(--cream-soft);
+  --color-cream-deep: var(--cream-deep);
+
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-deep: var(--burgundy-deep);
+
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-soft: var(--gold-soft);
+
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+
+  --font-sans: var(--font-sans-var);
+  --font-serif: var(--font-serif-var);
+  --font-display: var(--font-display-var);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* -------------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------------- */
+
+html, body {
+  background: var(--background);
+  color: var(--foreground);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--burgundy);
+  color: var(--cream);
+}
+
+/* Typography primitives — kept in @layer components so Tailwind utilities
+   (e.g. text-burgundy, text-gold) can override color / family when composed. */
+@layer components {
+  .font-display {
+    font-family: var(--font-display), var(--font-serif), Georgia, serif;
+    font-feature-settings: "ss01", "dlig", "liga";
+    letter-spacing: -0.01em;
+  }
+
+  .font-serif {
+    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+    font-feature-settings: "dlig", "liga";
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .hairline {
+    display: inline-block;
+    width: 3rem;
+    height: 1px;
+    background: currentColor;
+    vertical-align: middle;
+    opacity: 0.6;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Subtle grain texture — evokes editorial print
+   ------------------------------------------------------------------------- */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(rgba(86, 27, 13, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(200, 155, 84, 0.04) 1px, transparent 1px);
+  background-size: 3px 3px, 5px 5px;
+  background-position: 0 0, 1.5px 1.5px;
+}
+
+/* -------------------------------------------------------------------------
+   Buttons — in @layer components so Tailwind utilities can override.
+   ------------------------------------------------------------------------- */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.95rem 1.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    transition: background-color 250ms ease, color 250ms ease,
+      border-color 250ms ease, transform 250ms ease;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    background: var(--burgundy);
+    color: var(--cream);
+    border: 1px solid var(--burgundy);
+  }
+  .btn-primary:hover {
+    background: var(--burgundy-deep);
+    border-color: var(--burgundy-deep);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-outline:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid transparent;
+  }
+  .btn-ghost:hover {
+    color: var(--burgundy);
+  }
+
+  .btn-inverse {
+    background: var(--cream);
+    color: var(--burgundy);
+    border: 1px solid var(--cream);
+  }
+  .btn-inverse:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    color: var(--burgundy-deep);
+  }
+
+  .btn-outline-cream {
+    background: transparent;
+    color: var(--cream);
+    border: 1px solid var(--cream);
+  }
+  .btn-outline-cream:hover {
+    background: var(--cream);
+    color: var(--burgundy);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Link underline animation
+   ------------------------------------------------------------------------- */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right center;
+  transform: scaleX(0);
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after {
+  transform-origin: left center;
+  transform: scaleX(1);
+}
+
+/* -------------------------------------------------------------------------
+   Photo placeholder — editorial warm gradient blocks
+   Replace these with real photography by swapping the background image
+   on each .photo element via a child <img> / <Image>.
+   ------------------------------------------------------------------------- */
+.photo {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--cream-deep);
+  background-image:
+    radial-gradient(at 20% 10%, #e8c58a 0%, transparent 55%),
+    radial-gradient(at 80% 20%, #ba6a3f 0%, transparent 45%),
+    radial-gradient(at 60% 90%, #562210 0%, transparent 55%),
+    radial-gradient(at 10% 90%, #d9b57a 0%, transparent 50%);
+  background-size: 100% 100%;
+}
+.photo--cream {
+  background-image:
+    radial-gradient(at 30% 20%, #f2e2c0 0%, transparent 50%),
+    radial-gradient(at 75% 80%, #dcc596 0%, transparent 55%),
+    radial-gradient(at 10% 90%, #efe5d3 0%, transparent 60%);
+}
+.photo--cocoa {
+  background-image:
+    radial-gradient(at 30% 20%, #8b4a26 0%, transparent 50%),
+    radial-gradient(at 75% 80%, #3d120a 0%, transparent 60%),
+    radial-gradient(at 15% 85%, #c89b54 0%, transparent 40%);
+}
+.photo--rose {
+  background-image:
+    radial-gradient(at 30% 30%, #e8b8a2 0%, transparent 55%),
+    radial-gradient(at 75% 70%, #b06846 0%, transparent 55%),
+    radial-gradient(at 50% 100%, #c89b54 0%, transparent 40%);
+}
+.photo--pistachio {
+  background-image:
+    radial-gradient(at 30% 25%, #cbd199 0%, transparent 55%),
+    radial-gradient(at 80% 80%, #8a923f 0%, transparent 55%),
+    radial-gradient(at 50% 50%, #e8d4a0 0%, transparent 45%);
+}
+.photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(28, 18, 13, 0.22) 100%);
+  pointer-events: none;
+}
+.photo-caption {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.1rem;
+  right: 1.25rem;
+  color: var(--cream);
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 4px rgba(28, 18, 13, 0.35);
+  z-index: 2;
+}
+
+/* -------------------------------------------------------------------------
+   Decorative divider ornament
+   ------------------------------------------------------------------------- */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  color: var(--gold);
+}
+.ornament::before,
+.ornament::after {
+  content: "";
+  width: clamp(2rem, 8vw, 5rem);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+.ornament svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+/* Motion */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .reveal-delay-1 { animation-delay: 120ms; }
+  .reveal-delay-2 { animation-delay: 240ms; }
+  .reveal-delay-3 { animation-delay: 360ms; }
+}
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container */
+.container-x {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
 }
