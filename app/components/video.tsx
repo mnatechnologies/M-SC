@@ -41,8 +41,8 @@ export function Video({
   objectPosition?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const mp4 = `/renders/web/${src}.mp4`;
-  const jpg = poster ?? `/renders/web/${src}.jpg`;
+  const mp4 = `/Renders/web/${src}.mp4`;
+  const jpg = poster ?? `/Renders/web/${src}.jpg`;
 
   useEffect(() => {
     const el = videoRef.current;
