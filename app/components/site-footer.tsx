@@ -22,7 +22,7 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow text-cream/70">Visit</p>
           <address className="not-italic mt-4 font-serif text-cream/90 leading-relaxed">
-            154 Fairfield Street
+            156 Fairfield Street
             <br />
             Fairfield East 2165
           </address>

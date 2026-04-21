@@ -230,7 +230,7 @@ export default function Home() {
             <p>12pm &ndash; 11pm</p>
             <p className="mt-3 italic">Closed Sundays</p>
             <p className="eyebrow text-gold-light mt-8 mb-3">Address</p>
-            <p>154 Fairfield Street</p>
+            <p>156 Fairfield Street</p>
             <p>Fairfield East, NSW 2176 </p>
           </div>
         </div>

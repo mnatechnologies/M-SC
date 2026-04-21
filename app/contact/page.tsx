@@ -108,7 +108,7 @@ export default function ContactPage() {
             <div>
               <p className="eyebrow text-gold mb-3">Visit</p>
               <address className="not-italic font-serif text-xl leading-relaxed text-ink">
-                154 Fairfield Street
+                156 Fairfield Street
                 <br />
                 Fairfield East NSW 2165
               </address>
