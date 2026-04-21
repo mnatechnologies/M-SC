@@ -1,51 +1,61 @@
 import Link from "next/link";
+import Image from "next/image";
 
 type WordmarkProps = {
   size?: "sm" | "md" | "lg";
+  /** `cream` renders the mark on a cream pill so colours stay legible on dark backgrounds. */
   tone?: "ink" | "cream";
   asLink?: boolean;
 };
 
-const sizeMap = {
-  sm: "text-lg tracking-[0.18em]",
-  md: "text-xl tracking-[0.2em]",
-  lg: "text-3xl md:text-4xl tracking-[0.22em]",
+// Logo native is 1200 × 882 — ~1.36 aspect.
+const sizeMap: Record<"sm" | "md" | "lg", { h: number; w: number }> = {
+  sm: { h: 88, w: 120 },
+  md: { h: 120, w: 164 },
+  lg: { h: 168, w: 229 },
 };
 
 /**
- * A compact text-based wordmark. The full illustrated logo lives in
- * /public/brand/logo.svg and is used at feature moments (hero, contact).
+ * Brand mark. Renders /public/brand/logo.svg — the illustrated Manhal's
+ * logo (gold wreath + burgundy wordmark). On `tone="cream"` we wrap it
+ * in a cream pill so the colours remain legible on the burgundy footer.
  */
 export function Wordmark({ size = "md", tone = "ink", asLink = true }: WordmarkProps) {
-  const color = tone === "cream" ? "text-cream" : "text-ink";
-  const content = (
-    <span className={`inline-flex items-baseline gap-[0.35em] ${color}`}>
-      <span
-        className={`font-serif font-medium ${sizeMap[size]}`}
-        style={{ fontVariationSettings: "'opsz' 144, 'SOFT' 100" }}
-      >
-        Manhal&rsquo;s
-      </span>
-      <span
-        aria-hidden
-        className="text-gold"
-        style={{ fontFamily: "var(--font-display)", fontSize: "1.2em", lineHeight: 1 }}
-      >
-        ·
-      </span>
-      <span
-        className={`font-serif italic text-[0.78em] ${sizeMap[size]} text-ink-soft`}
-        style={{ letterSpacing: "0.04em" }}
-      >
-        Sweets &amp; Cafe
-      </span>
-    </span>
+  const { h, w } = sizeMap[size];
+  const inner = (
+    <Image
+      src="/brand/logo.png"
+      alt="Manhal's Sweets and Cafe"
+      width={w}
+      height={h}
+      priority
+      className="block h-auto"
+      style={{ height: h, width: "auto" }}
+    />
   );
 
-  if (!asLink) return content;
+  const wrapped =
+    tone === "cream" ? (
+      <span
+        className="inline-flex items-center justify-center bg-cream rounded-full px-4 py-2"
+        style={{ lineHeight: 0 }}
+      >
+        {inner}
+      </span>
+    ) : (
+      <span className="inline-block" style={{ lineHeight: 0 }}>
+        {inner}
+      </span>
+    );
+
+  if (!asLink) return wrapped;
   return (
-    <Link href="/" aria-label="Manhal's Sweets & Cafe — home" className="inline-block">
-      {content}
+    <Link
+      href="/"
+      aria-label="Manhal's Sweets and Cafe — home"
+      className="inline-block"
+    >
+      {wrapped}
     </Link>
   );
 }

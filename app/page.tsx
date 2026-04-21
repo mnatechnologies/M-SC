@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { Photo, Ornament } from "./components/photo";
+import Image from "next/image";
+import { Ornament } from "./components/photo";
+import { Video } from "./components/video";
 
 export default function Home() {
   return (
     <>
       {/* ---------------------------------------------------------------
-          HERO — full-bleed warm wash, opening-date announcement
+          HERO — full-bleed warm wash, opening-day announcement
           --------------------------------------------------------------- */}
       <section className="relative overflow-hidden bg-cream-deep grain">
         <div className="container-x relative z-10 pt-20 pb-24 md:pt-32 md:pb-40 grid gap-12 md:grid-cols-12 items-end">
@@ -15,16 +17,14 @@ export default function Home() {
               className="font-serif text-[12vw] leading-[0.92] md:text-[7.2rem] lg:text-[9rem] text-ink"
               style={{ fontVariationSettings: "'opsz' 144, 'SOFT' 100" }}
             >
-              Sweet
+              Sweet things,
               <br />
-              patience,
-              <br />
-              <span className="italic text-burgundy">served daily.</span>
+              <span className="italic text-burgundy">cold drinks.</span>
             </h1>
             <p className="max-w-md text-lg text-ink-soft leading-relaxed">
-              A neighbourhood sweets and coffee house in the making.
-              Cakes, Middle Eastern pastries, and slow-pulled coffee
-              &mdash; crafted in small batches, one tray at a time.
+              A neighbourhood sweets house and cafe. Cakes and milkshakes,
+              Dubai-style crêpes, thick açaí, fresh-pressed juice,
+              mocktails and iced coffee &mdash; made to order.
             </p>
             <div className="flex flex-wrap gap-3 mt-4">
               <Link href="/menu" className="btn btn-primary">
@@ -37,18 +37,23 @@ export default function Home() {
           </div>
 
           <div className="md:col-span-5 reveal reveal-delay-1">
-            <Photo
-              tone="rose"
-              ratio="portrait"
-              caption="Rose & pistachio layer cake"
-              className="shadow-[0_30px_60px_-30px_rgba(86,27,13,0.45)]"
-            />
+            <figure className="photo aspect-[3/4] w-full shadow-[0_30px_60px_-30px_rgba(86,27,13,0.45)]">
+              <Image
+                src="/spotlight.jpeg"
+                alt="Three signature milkshakes in Manhal's-branded glasses — biscoff, pistachio and kinder."
+                fill
+                priority
+                sizes="(min-width: 768px) 42vw, 90vw"
+                className="object-cover"
+              />
+              <figcaption className="photo-caption">Signature milkshakes</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
       {/* ---------------------------------------------------------------
-          SIGNATURE STRIP — three pillars
+          SIGNATURE STRIP — three pillars (Sweets / Chilled / Drinks)
           --------------------------------------------------------------- */}
       <section className="py-24 md:py-32">
         <div className="container-x">
@@ -63,35 +68,41 @@ export default function Home() {
           <div className="grid gap-10 md:grid-cols-3">
             {[
               {
-                tone: "pistachio" as const,
-                eyebrow: "01 — Cakes",
-                title: "Cakes & celebrations",
+                video: "cakes-and-milkshake",
+                eyebrow: "01 — Sweets",
+                title: "Cakes, crêpes & waffles",
                 copy:
-                  "Whole cakes made to order. Think rose & pistachio, fig & honey, chocolate &  cardamom.",
+                  "Twelve cake flavours by the slice or blended into a milkshake. Dubai-style crêpes folded to order. Waffles and mini pancakes for the table.",
                 href: "/cakes",
                 cta: "See the cakes",
+                caption: "Red velvet, by the slice",
               },
               {
-                tone: "cream" as const,
-                eyebrow: "02 — Pastries",
-                title: "Middle Eastern pastries",
+                video: "acai-ice-cream",
+                eyebrow: "02 — Chilled",
+                title: "Açaí & ice cream",
                 copy:
-                  "Baklava, ma'amoul, kanafeh, and knafeh-inspired croissants &mdash; made fresh each morning.",
-                href: "/menu",
-                cta: "Browse the menu",
+                  "Thick blended açaí cups and bowls, Dubai-strawberry cups, cones and scoops. Build it your way with sauces and add-ons.",
+                href: "/menu#acai",
+                cta: "Build a bowl",
+                caption: "Dubai strawberry cup",
               },
               {
-                tone: "cocoa" as const,
-                eyebrow: "03 — Coffee",
-                title: "Slow-pulled coffee",
+                video: "cocktails-iced-coffee",
+                eyebrow: "03 — Drinks",
+                title: "Iced coffee, mocktails, juice",
                 copy:
-                  "Specialty espresso, filter, and Turkish coffee brewed with a patient hand.",
-                href: "/menu",
+                  "Cold-pressed juices, layered mocktails, cocktail-style blends with almond and honey, and an iced coffee that doesn&rsquo;t cut corners.",
+                href: "/menu#coffee",
                 cta: "See drinks",
+                caption: "Shako mako blend",
               },
             ].map((col, i) => (
-              <article key={col.title} className={`flex flex-col gap-5 reveal reveal-delay-${i + 1}`}>
-                <Photo tone={col.tone} ratio="landscape" />
+              <article
+                key={col.title}
+                className={`flex flex-col gap-5 reveal reveal-delay-${i + 1}`}
+              >
+                <Video src={col.video} ratio="vertical" caption={col.caption} />
                 <p className="eyebrow text-gold">{col.eyebrow}</p>
                 <h3 className="font-serif text-2xl leading-tight">{col.title}</h3>
                 <p
@@ -116,7 +127,7 @@ export default function Home() {
       <section className="bg-cream-soft py-24 md:py-32">
         <div className="container-x grid gap-12 md:grid-cols-12 items-center">
           <div className="md:col-span-5">
-            <Photo tone="cocoa" ratio="portrait" caption="The morning bake" />
+            <Video src="crepes" ratio="vertical" caption="Dubai crêpe, folded to order" />
           </div>
           <div className="md:col-span-6 md:col-start-7 flex flex-col gap-6">
             <p className="eyebrow text-burgundy">
@@ -128,14 +139,14 @@ export default function Home() {
               <span className="italic">takes its time.</span>
             </h2>
             <p className="text-ink-soft text-lg leading-relaxed">
-              Manhal&rsquo;s began as a family tradition &mdash; weekend
-              trays of baklava, long afternoons around a coffee pot.
-              We&rsquo;re bringing that rhythm to a small corner of the
-              neighbourhood, with recipes passed down, butter folded by
-              hand, and coffee poured with care.
+              Manhal&rsquo;s started with a simple idea &mdash; the sweets
+              and drinks we grew up wanting, done properly. Pistachio
+              everywhere. Real fruit, cold-pressed. Cakes you actually
+              want a second slice of.
             </p>
             <p className="text-ink-soft leading-relaxed">
-              Doors open 26 April. We can&rsquo;t wait to share the first tray.
+              We fold crêpes to order, blend açaí thick, and pour coffee
+              with care. Doors open 26 April.
             </p>
           </div>
         </div>
@@ -152,6 +163,10 @@ export default function Home() {
               <h2 className="font-serif text-4xl md:text-5xl mt-3">
                 A handful of favourites.
               </h2>
+              <p className="mt-4 text-ink-soft leading-relaxed">
+                Twelve flavours on rotation. Available by the slice, or
+                as a whole cake with 24 hours&rsquo; notice.
+              </p>
             </div>
             <Link href="/cakes" className="btn btn-outline self-start">
               See all cakes
@@ -159,10 +174,26 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            <Photo tone="rose" ratio="tall" caption="Rose & pistachio" />
-            <Photo tone="cream" ratio="tall" caption="Orange-blossom tres leches" />
-            <Photo tone="cocoa" ratio="tall" caption="Chocolate & cardamom" />
-            <Photo tone="pistachio" ratio="tall" caption="Fig, honey & thyme" />
+            {[
+              { photo: "/product-images/cakes/red-velvet.jpeg", caption: "Red velvet" },
+              { photo: "/product-images/cakes/pistachio-cheesecake.jpeg", caption: "Pistachio cheesecake" },
+              { photo: "/product-images/cakes/tiramisu.jpeg", caption: "Tiramisu" },
+              { photo: "/product-images/cakes/mango-cheesecake.jpeg", caption: "Mango cheesecake" },
+            ].map((c) => (
+              <figure
+                key={c.caption}
+                className="photo aspect-[2/3] w-full relative overflow-hidden"
+              >
+                <Image
+                  src={c.photo}
+                  alt={c.caption}
+                  fill
+                  sizes="(min-width: 768px) 22vw, 46vw"
+                  className="object-cover"
+                />
+                <figcaption className="photo-caption">{c.caption}</figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
@@ -180,8 +211,8 @@ export default function Home() {
               <span className="italic text-gold-light">slow afternoon.</span>
             </h2>
             <p className="max-w-md text-cream/80 leading-relaxed">
-              We&rsquo;re on Lygon Street, Melbourne. Dine in for cakes
-              and coffee, or order ahead for something special.
+              We&rsquo;re on Fairfield Street, Fairfield East. Dine in for cake
+              and a cold drink, or order ahead for something special.
             </p>
             <div className="flex flex-wrap gap-3 mt-3">
               <Link href="/contact" className="btn btn-inverse">
@@ -195,12 +226,12 @@ export default function Home() {
 
           <div className="md:col-span-5 text-sm font-serif text-cream/80 leading-loose md:pl-8 md:border-l md:border-cream/20">
             <p className="eyebrow text-gold-light mb-3">Hours</p>
-            <p>Tuesday &ndash; Sunday</p>
-            <p>7am &ndash; 5pm</p>
-            <p className="mt-3 italic">Closed Mondays</p>
+            <p>Monday &ndash; Saturday</p>
+            <p>12pm &ndash; 11pm</p>
+            <p className="mt-3 italic">Closed Sundays</p>
             <p className="eyebrow text-gold-light mt-8 mb-3">Address</p>
-            <p>123 Lygon Street</p>
-            <p>Melbourne VIC 3000</p>
+            <p>154 Fairfield Street</p>
+            <p>Fairfield East, NSW 2176 </p>
           </div>
         </div>
       </section>

@@ -33,11 +33,11 @@ export const metadata: Metadata = {
     template: "%s · Manhal's Sweets & Cafe",
   },
   description:
-    "A neighbourhood sweets and coffee house. Handcrafted cakes, Middle Eastern pastries, and slow-pulled coffee. Opening 26 April.",
+    "A neighbourhood sweets house and cafe. Cakes and milkshakes, crêpes, açaí, juice, mocktails and iced coffee. Opening 26 April.",
   openGraph: {
     title: "Manhal's Sweets & Cafe",
     description:
-      "Handcrafted cakes, Middle Eastern pastries, and slow-pulled coffee. Opening 26 April.",
+      "Cakes and milkshakes, crêpes, açaí, juice, mocktails and iced coffee. Opening 26 April.",
     type: "website",
   },
   icons: {

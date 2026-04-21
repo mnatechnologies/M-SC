@@ -10,9 +10,9 @@ export function SiteFooter() {
             <Wordmark size="md" tone="cream" asLink={false} />
           </div>
           <p className="max-w-sm font-serif italic text-cream/80 leading-relaxed">
-            A neighbourhood sweets and coffee house. Handcrafted cakes,
-            Middle Eastern pastries, and slow-pulled coffee &mdash; made with
-            patience in small batches.
+            A neighbourhood sweets house and cafe. Cakes and milkshakes,
+            crêpes, açaí, fresh juice, mocktails and iced coffee &mdash;
+            made to order.
           </p>
           <p className="eyebrow text-gold-light mt-2">
             Opening 26 April 2026
@@ -22,14 +22,14 @@ export function SiteFooter() {
         <div>
           <p className="eyebrow text-cream/70">Visit</p>
           <address className="not-italic mt-4 font-serif text-cream/90 leading-relaxed">
-            123 Lygon Street
+            154 Fairfield Street
             <br />
-            Melbourne VIC 3000
+            Fairfield East 2165
           </address>
           <p className="mt-4 text-sm text-cream/70">
-            Tue&ndash;Sun · 7am &ndash; 5pm
+            Mon&ndash;Sat · 12pm &ndash; 11pm
             <br />
-            Closed Mondays
+            Closed Sundays
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <a href="tel:+61300000000" className="link-underline text-cream/90">
+              <a href="tel:+61200000000" className="link-underline text-cream/90">
                 (03) 0000 0000
               </a>
             </li>

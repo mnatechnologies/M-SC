@@ -1,4 +1,5 @@
-import { Photo, Ornament } from "../components/photo";
+import { Ornament } from "../components/photo";
+import { Video } from "../components/video";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,13 +25,13 @@ export default function ContactPage() {
               <span className="italic text-burgundy">or order a cake.</span>
             </h1>
             <p className="max-w-md text-ink-soft text-lg leading-relaxed">
-              Order cakes and pastries a day ahead, or tell us about a
-              custom order. We usually reply within the day.
+              Order a cake ahead, book a celebration, or ask us anything
+              about the menu. We usually reply within the day.
             </p>
           </div>
 
           <div className="md:col-span-5 reveal reveal-delay-1">
-            <Photo tone="rose" ratio="portrait" caption="Custom orders welcome" />
+            <Video src="acai-ice-cream" ratio="vertical" caption="Custom orders welcome" />
           </div>
         </div>
       </section>
@@ -67,7 +68,7 @@ export default function ContactPage() {
 
               <fieldset className="flex flex-wrap gap-5 mt-2">
                 <legend className="eyebrow text-ink-muted mb-3 w-full">Order type</legend>
-                {["Whole cake", "Pastry box", "Custom cake", "Something else"].map(
+                {["Whole cake", "Milkshake order", "Custom cake", "Something else"].map(
                   (label) => (
                     <label
                       key={label}
@@ -107,20 +108,20 @@ export default function ContactPage() {
             <div>
               <p className="eyebrow text-gold mb-3">Visit</p>
               <address className="not-italic font-serif text-xl leading-relaxed text-ink">
-                123 Lygon Street
+                154 Fairfield Street
                 <br />
-                Melbourne VIC 3000
+                Fairfield East NSW 2165
               </address>
             </div>
 
             <div>
               <p className="eyebrow text-gold mb-3">Hours</p>
               <p className="font-serif text-lg leading-relaxed text-ink">
-                Tuesday &ndash; Sunday
+                Monday &ndash; Saturday
                 <br />
-                7am &ndash; 5pm
+                12pm &ndash; 11pm
               </p>
-              <p className="font-serif italic text-ink-muted mt-2">Closed Mondays</p>
+              <p className="font-serif italic text-ink-muted mt-2">Closed Sundays</p>
             </div>
 
             <div>
@@ -136,7 +137,7 @@ export default function ContactPage() {
                 </li>
                 <li>
                   <a href="tel:+61300000000" className="link-underline">
-                    (03) 0000 0000
+                    (02) 0000 0000
                   </a>
                 </li>
               </ul>
@@ -180,12 +181,12 @@ export default function ContactPage() {
           <div className="grid md:grid-cols-3 gap-10">
             {[
               {
-                t: "Pastries",
-                d: "Walk in from 7am. Whole pastry boxes: 24 hours&rsquo; notice.",
+                t: "Walk-in",
+                d: "Slices, drinks and everything à la carte &mdash; just come in from 7am.",
               },
               {
                 t: "Signature cakes",
-                d: "Any cake from our selection: 24 hours&rsquo; notice.",
+                d: "Any whole cake from our twelve: 24 hours&rsquo; notice.",
               },
               {
                 t: "Custom cakes",

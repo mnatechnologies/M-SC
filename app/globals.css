@@ -295,6 +295,37 @@ body {
 }
 
 /* -------------------------------------------------------------------------
+   Tonal "chip" — softer backdrop for transparent product photography.
+   Uses a single gentle wash per tone so the drink itself stays the focus.
+   ------------------------------------------------------------------------- */
+.chip {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+}
+.chip--cream {
+  background: linear-gradient(145deg, #f7ead1 0%, #ead7b0 100%);
+}
+.chip--rose {
+  background: linear-gradient(145deg, #f3dacd 0%, #e3b9a4 100%);
+}
+.chip--pistachio {
+  background: linear-gradient(145deg, #e4e8c1 0%, #c7cf9b 100%);
+}
+.chip--cocoa {
+  /* Lighter cocoa than the placeholder — still warm but readable for darker drinks. */
+  background: linear-gradient(145deg, #e4c9a3 0%, #b89067 100%);
+}
+/* Subtle inner shadow to give the chip a little dimension. */
+.chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 -28px 48px -24px rgba(86, 27, 13, 0.15);
+}
+
+/* -------------------------------------------------------------------------
    Decorative divider ornament
    ------------------------------------------------------------------------- */
 .ornament {
