@@ -117,11 +117,11 @@ export default function ContactPage() {
             <div>
               <p className="eyebrow text-gold mb-3">Hours</p>
               <p className="font-serif text-lg leading-relaxed text-ink">
-                Monday &ndash; Saturday
+                Monday &ndash; Sunday
                 <br />
                 12pm &ndash; 11pm
               </p>
-              <p className="font-serif italic text-ink-muted mt-2">Closed Sundays</p>
+
             </div>
 
             <div>

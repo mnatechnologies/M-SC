@@ -226,9 +226,8 @@ export default function Home() {
 
           <div className="md:col-span-5 text-sm font-serif text-cream/80 leading-loose md:pl-8 md:border-l md:border-cream/20">
             <p className="eyebrow text-gold-light mb-3">Hours</p>
-            <p>Monday &ndash; Saturday</p>
+            <p>Monday &ndash; Sunday</p>
             <p>12pm &ndash; 11pm</p>
-            <p className="mt-3 italic">Closed Sundays</p>
             <p className="eyebrow text-gold-light mt-8 mb-3">Address</p>
             <p>156 Fairfield Street</p>
             <p>Fairfield East, NSW 2176 </p>

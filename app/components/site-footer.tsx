@@ -27,9 +27,8 @@ export function SiteFooter() {
             Fairfield East 2165
           </address>
           <p className="mt-4 text-sm text-cream/70">
-            Mon&ndash;Sat · 12pm &ndash; 11pm
+            Mon&ndash;Sun · 12pm &ndash; 11pm
             <br />
-            Closed Sundays
           </p>
         </div>
 
