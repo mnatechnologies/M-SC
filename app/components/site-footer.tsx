@@ -42,7 +42,7 @@ export function SiteFooter() {
             </li>
             <li>
               <a href="tel:+61200000000" className="link-underline text-cream/90">
-                (03) 0000 0000
+                (02) 8710 2361
               </a>
             </li>
             <li>
